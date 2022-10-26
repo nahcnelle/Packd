@@ -23,9 +23,9 @@ const ItemView = ({list_name, list_id}) => {
     getLists();
   }, []);
 
-  console.log(items, "before");
+  // console.log(items, "bef÷ore");
   items.filter(item => item.list_id == list_id);
-  console.log(items, "after");
+  // console.log(items, "after");
 
   return (
     <div>

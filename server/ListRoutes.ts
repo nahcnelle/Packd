@@ -8,8 +8,8 @@ listRoutes.post("/alllists", async(req,res) => {
     try {
         const { description, trip_id } = req.body;
         console.log(description);
-        // const newItem = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES('sanfrancisco', 33) RETURNING *");
-        const newList = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES($1, $2) RETURNING *", [description, trip_id]);
+        // const newItem = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES('sanfrancisco', 33)");
+        const newList = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES($1, $2)", [description, trip_id]);
     
         console.log(res.json(newList.rows[0]));
       } catch (err : any) {

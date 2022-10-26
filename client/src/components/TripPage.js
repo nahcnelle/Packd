@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-// import ListPage from "./ListPage";
 import TripAddInput from "./TripAddInput";
 import TripEdit from "./TripEdit";
 

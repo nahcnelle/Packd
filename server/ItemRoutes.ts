@@ -7,7 +7,7 @@ const itemRoutes = express.Router();
 itemRoutes.post("/allitems", async(req,res) => {
     try {
         const { item, quantity, list_id } = req.body;
-        const addItem = await pool.query("INSERT INTO items (item, quantity, list_id) VALUES($1, $2, $3) RETURNING *", [item, quantity, list_id]);
+        const addItem = await pool.query("INSERT INTO items (item, quantity, list_id) VALUES($1, $2, $3)", [item, quantity, list_id]);
     
         console.log(res.json(addItem.rows[0]));
       } catch (err : any) {
