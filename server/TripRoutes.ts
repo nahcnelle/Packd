@@ -7,7 +7,7 @@ const tripRoutes = express.Router();
 tripRoutes.post("/alltrips", async(req,res) => {
     try {
         const { destination } = req.body;
-        const newTrip = await pool.query("INSERT INTO trips (destination) VALUES($1) RETURNING *", [destination]);
+        const newTrip = await pool.query("INSERT INTO trips (destination) VALUES($1)", [destination]);
     
         console.log(res.json(newTrip.rows[0]));
       } catch (err : any) {

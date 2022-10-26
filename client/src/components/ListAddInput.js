@@ -12,7 +12,7 @@ const ListAddInput = () => {
         e.preventDefault();
         try {
             const body = { description, trip_id };
-            console.log(body, "body");
+            // console.log(body, "body");
             const response = await fetch("http://localhost:8000/alllists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
