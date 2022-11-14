@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import ItemEditInput from "./ItemEditInput";
-import ItemEditQuantity from "./ItemEditQuantity";
-import ItemRemove from "./ItemRemove";
-import ItemAdd from "./ItemAdd";
+import ItemEditInput from "../item-table-components/ItemUpdate";
+import ItemEditQuantity from "../item-table-components/ItemEditQuantity";
+import ItemRemove from "../item-table-components/ItemRemove";
+import ItemAdd from "../item-table-components/ItemAdd";
 import ListRemove from "./ListRemove";
 
-import "./css-files/ListItemsView.css";
+import "../css-files/ListItemsView.css";
 
 const ListItemsView = ({list, lists, setLists}) => {
     const [items, setItems] = useState([]);
@@ -40,7 +40,7 @@ const ListItemsView = ({list, lists, setLists}) => {
                 
             </h3>
         
-            <ItemAdd list_id={list_id}></ItemAdd>
+            <ItemAdd list_id={list_id} className="item-add"/>
 
             <table className="table text-center mx-5">
                 <thead>

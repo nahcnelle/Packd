@@ -4,6 +4,7 @@ import pool from "./database";
 import tripRoutes from "./TripRoutes";
 import listRoutes from "./ListRoutes";
 import itemRoutes from "./ItemRoutes";
+import userRoutes from "./UserRoutes";
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(tripRoutes);
 app.use(listRoutes);
 app.use(itemRoutes);
+app.use(userRoutes);
 
 app.listen(8000, () => {
     console.log("packd server started on port 8000");

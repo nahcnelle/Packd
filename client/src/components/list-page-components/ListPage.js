@@ -3,9 +3,8 @@ import { Link, useParams } from "react-router-dom";
 
 import ListItemsView from "./ListItemsView";
 import ListAddInput from "./ListAddInput";
-import ListRemove from "./ListRemove";
 
-import "./css-files/ListPage.css";
+import "../css-files/ListPage.css";
 
 const ListPage = () => {
     const [lists, setLists] = useState([]);
@@ -34,12 +33,12 @@ const ListPage = () => {
 //   console.log(lists);
 
     return (
-        <div>
+        <div className="page">
             <h1 className="text-center" style={{marginRight: 200, marginLeft: 200}}>
                 Lists
             </h1>
 
-            <ListAddInput />
+            <ListAddInput className="list-add"/>
 
             <div className="lists d-flex flex-wrap justify-content-evenly">
                 {lists.filter(list => (list.trip_id == trip_id)).sort((a, b) => a.trip_id-b.trip_id).map(list => (

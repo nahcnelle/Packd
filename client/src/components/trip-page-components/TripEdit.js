@@ -30,7 +30,7 @@ const TripEdit = ({ trip }) => {
     return (
     <div>
         <form className="d-flex mx-5" onSubmit={e => updateTrip(e, trip.trip_id, e.target[0].value)}>
-            <input type="text" className="form-control" value={destination == null ? '' : destination} onChange={e => setTrip(e.target.value)} />
+            <input type="text" className="form form-control text-center" value={destination == null ? '' : destination} onChange={e => setTrip(e.target.value)} />
             <button className="btn btn-success">Update</button>
         </form>
     </div>

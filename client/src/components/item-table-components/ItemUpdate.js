@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import ItemEditQuantity from "./ItemEditQuantity";
 
-import "./css-files/ItemUpdate.css";
+import "../css-files/ItemUpdate.css";
 
 const ItemEditInput = ({ items, list_id }) => {
     const [item, setItem] = useState(items.item);

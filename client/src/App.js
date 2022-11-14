@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import './App.css';
 
-import TripPage from './components/TripPage';
+import TripPage from './components/trip-page-components/TripPage';
 import HomePage from "./components/HomePage";
-import ListPage from "./components/ListPage";
+import ListPage from "./components/list-page-components/ListPage";
 
 export default class App extends Component {
   render() {

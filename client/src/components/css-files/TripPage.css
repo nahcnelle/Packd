@@ -1,6 +1,18 @@
-trips {
-    margin: 1000px;
+.page {
+    margin: 10rem;
 }
-table {
-    margin: 1000px;
+
+.table {
+    margin: 1rem;
+}
+
+.row {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit {
+    width: 80%;
 }

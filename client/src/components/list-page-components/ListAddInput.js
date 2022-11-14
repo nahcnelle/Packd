@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./css-files/ListAddInput.css";
+import "../css-files/ListAddInput.css";
 
 const ListAddInput = () => {
     const [description, setDescription] = useState();

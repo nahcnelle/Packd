@@ -6,8 +6,8 @@ const tripRoutes = express.Router();
 // add a trip
 tripRoutes.post("/alltrips", async(req,res) => {
     try {
-        const { destination } = req.body;
-        const newTrip = await pool.query("INSERT INTO trips (destination) VALUES($1)", [destination]);
+        const { destination, user_id } = req.body;
+        const newTrip = await pool.query("INSERT INTO trips (destination, user_id) VALUES($1, $2)", [destination, user_id]);
     
         console.log(res.json(newTrip.rows[0]));
       } catch (err : any) {
@@ -16,10 +16,10 @@ tripRoutes.post("/alltrips", async(req,res) => {
 });
 
 // delete a trip
-tripRoutes.delete("/alltrips/:id", async (req, res) => {
+tripRoutes.delete("/alltrips/:trip_id", async (req, res) => {
     try {
-        const { id } = req.params;
-        const deleteTrip = await pool.query("DELETE FROM trips WHERE trip_id = $1", [id]);
+        const { trip_id } = req.params;
+        const deleteTrip = await pool.query("DELETE FROM trips WHERE trip_id = $1", [trip_id]);
         
         console.log(res.json(deleteTrip));
     } catch (err : any) {
@@ -28,11 +28,11 @@ tripRoutes.delete("/alltrips/:id", async (req, res) => {
 });
 
 // update a trip
-tripRoutes.put("/alltrips/:id", async (req, res) => {
+tripRoutes.put("/alltrips/:trip_id", async (req, res) => {
     try {
-        const { id } = req.params;
+        const { trip_id } = req.params;
         const { destination } = req.body;
-        const updateTrip = await pool.query("UPDATE trips SET destination = $1 WHERE trip_id = $2", [destination, id]);
+        const updateTrip = await pool.query("UPDATE trips SET destination = $1 WHERE trip_id = $2", [destination, trip_id]);
 
         console.log(res.json(updateTrip.rows[0]));
     } catch (err : any) {
@@ -41,12 +41,24 @@ tripRoutes.put("/alltrips/:id", async (req, res) => {
 });
 
 // get a trip
-tripRoutes.get("/alltrips/:id", async (req, res) => {
+tripRoutes.get("/alltrips/:trip_id", async (req, res) => {
     try {
-        const { id } = req.params;
-        const getTrip = await pool.query("SELECT * FROM trips WHERE trip_id = $1", [id]);
+        const { trip_id } = req.params;
+        const getTrip = await pool.query("SELECT * FROM trips WHERE trip_id = $1", [trip_id]);
 
         console.log(res.json(getTrip.rows[0]));
+    } catch (err : any) {
+        console.error(err.message);
+    }
+});
+
+// get user's trips
+tripRoutes.get("/alltrips/:user_id", async (req, res) => {
+    try {
+        const { user_id } = req.params;
+        const userTrips = await pool.query("SELECT * FROM trips where user_id = $1", [user_id]);
+
+        console.log(res.json(userTrips.rows));
     } catch (err : any) {
         console.error(err.message);
     }

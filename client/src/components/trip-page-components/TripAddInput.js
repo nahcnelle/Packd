@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./css-files/TripAddInput.css"
+import "../css-files/TripAddInput.css"
 
 const TripAddInput = () => {
     const [destination, setDestination] = useState("");
