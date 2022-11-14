@@ -1,0 +1,42 @@
+.list-name {
+    margin-right: 25px;
+}
+
+.remove-btn {
+    margin-left: 25px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+tr, th, td {
+    border: 1px solid black;
+    /* border-collapse: collapse; */
+
+}
+
+table.quantity-header {
+    border: 1px solid black;
+    width: 0px;
+}
+
+table.checkbox {
+    border: 1px solid black;
+}
+
+table.edit-quantity {
+    width: 0px;
+    border: 1px solid black;
+}
+
+table.edit-input {
+    width: 100%;
+    border: 1px solid black;
+}
+
+/* .edit-input {
+
+} */
