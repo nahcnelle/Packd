@@ -7,11 +7,11 @@ import TripEdit from "./TripEdit";
 import "../css-files/TripPage.css";
 
 
-export default function TripPage() {
+export default function TripPage(user_id) {
   const [trips, setTrips] = useState([]);
   const getTrips = async () => {
     try {
-      const response = await fetch("http://localhost:8000/alltrips");
+      const response = await fetch(`http://localhost:8000/alltrips/${user_id}`);
       const jsonData = await response.json();
 
     //   console.log(response);
@@ -38,7 +38,7 @@ export default function TripPage() {
           </tr>
         </thead>
         <tbody>
-          {trips.sort((a, b) => a.trip_id-b.trip_id).map(trip => (
+          {trips.filter(trip => (trip.user_id == user_id)).sort((a, b) => a.trip_id-b.trip_id).map(trip => (
             <tr key={trip.trip_id} className="row">
               {/* <td className="text">{trip.destination}</td> */}
               {/* <td className="d-flex justify-content-center"> */}
