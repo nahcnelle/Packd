@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import "./css-files/SignupForm.css"
+import "./css-files/SignupPage.css"
 
-const SignupForm = () => {
+const SignupPage = () => {
     const [username, setUsername] = useState("");
     const [isVisible, setVisibility] = useState(false);
 
@@ -37,17 +37,6 @@ const SignupForm = () => {
                 window.location = `/trips/${body.username}`;
             }
 
-            // const postResponse = await fetch("http://localhost:8000/users", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(body)
-            // });
-
-            // window.location = `/trips/${user_id}`;
-
-            // console.log(response);
-            // const data = await response.json();
-            // console.log(data);
         } catch (err) {
             console.error(err.message);
         }
@@ -58,15 +47,19 @@ const SignupForm = () => {
     }
 
     return (
-        <div>
-            <h3 className="text mx-5">Signup</h3>
-            <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>Username taken! Please enter another username. 🥸</p>
-            <form className="d-flex mx-5" onSubmit={onSubmitForm}>
-                <input type="text" className="form form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
-                <button className="btn btn-primary">Signup</button>
+        <div className="signup-page text-center">
+            <h1 className="text-center mt-5">Packd</h1>
+            <h3 className="signup-header">Signup</h3>
+            <div className="signup-messsage d-flex">
+                <p className="enter-username-text">Enter a username.</p>
+                <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>Username taken! Please enter another username. 🥸</p>
+            </div>
+            <form className="username-form d-flex mx-5" onSubmit={onSubmitForm}>
+                <input type="text" className="form-input form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+                <button className="form-btn btn btn-primary">Signup</button>
             </form>
         </div>
     );
 };
 
-export default SignupForm;
+export default SignupPage;

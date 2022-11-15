@@ -1,0 +1,38 @@
+.signup-page {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.signup-header {
+    margin-top: 2rem;
+}
+
+.signup-message {
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+}
+
+.enter-username-text {
+    font-weight: 500;
+    margin-left: 4rem;
+}
+
+.user-taken-message {
+    color: red;
+    font-weight: 500;
+    /* margin-top: 4rem; */
+    margin-left: 1rem;
+}
+
+.username-form {
+    
+}
+
+.form-input {
+    max-width: 50%;
+}
+
+.form-btn {
+    margin-left: 1rem;
+}
