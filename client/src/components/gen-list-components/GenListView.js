@@ -34,7 +34,7 @@ const GenListView = ({list, lists, setLists, user_id}) => {
         <div className="lists">
             <h3 className="d-flex justify-content-center">
                 <div className="list-name">{list_name}</div>
-                <div className="remove-btn"><ListRemove list={list} lists={lists} setLists={setLists} /></div>
+                <div className="remove-btn"><ListRemove list={list} lists={lists} setLists={setLists} gen_list={true} /></div>
             </h3>
         
             <ItemAdd list_id={list_id} gen_list={true} className="item-add"/>

@@ -80,10 +80,10 @@ const ListPage = () => {
 
                 <div className="lists d-flex flex-wrap justify-content-evenly">
                     {lists.filter(list => (list.trip_id == trip_id)).sort((a, b) => a.trip_id-b.trip_id).map(list => (
-                        <ListItemsView key={list.list_id} list={list} lists={lists} setLists={setLists}/>
+                        <ListItemsView key={list.list_id} list={list} lists={lists} setLists={setLists} gen_list={false}/>
                     ))}
                     {genLists.filter(list => (list.trip_id == trip_id)).sort((a, b) => a.trip_id-b.trip_id).map(list => (
-                        <ListItemsView key={list.list_id} list={list} lists={lists} setLists={setLists}/>
+                        <ListItemsView key={list.list_id} list={list} lists={lists} setLists={setLists} gen_list={true}/>
                     ))}
                 </div>
             </div>

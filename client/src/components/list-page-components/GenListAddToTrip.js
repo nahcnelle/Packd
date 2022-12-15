@@ -59,6 +59,7 @@ const GenListAddToTrip = ( {gen_list} ) => {
         } catch (err) {
             console.error(err.message);
         }
+        window.location = `/list/user=${user_id}&trip=${trip_id}`;
     };
 
     return (

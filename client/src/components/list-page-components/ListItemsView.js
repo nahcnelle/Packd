@@ -9,7 +9,7 @@ import ListRemove from "./ListRemove";
 
 import "../css-files/ListItemsView.css";
 
-const ListItemsView = ({list, lists, setLists}) => {
+const ListItemsView = ({list, lists, setLists, gen_list}) => {
     const [items, setItems] = useState([]);
     const list_name = list.description;
     const list_id = list.list_id;
@@ -34,11 +34,11 @@ const ListItemsView = ({list, lists, setLists}) => {
         <div className="lists">
             <h3 className="d-flex justify-content-center">
                 <div className="list-name">{list_name}</div>
-                <div className="remove-btn"><ListRemove list={list} lists={lists} setLists={setLists} /></div>
+                <div className="remove-btn"><ListRemove list={list} lists={lists} setLists={setLists} gen_list={gen_list} /></div>
                 
             </h3>
         
-            <ItemAdd list_id={list_id} gen_list={false} className="item-add"/>
+            <ItemAdd list_id={list_id} gen_list={gen_list} className="item-add"/>
 
             <table className="table text-center mx-5">
                 <thead>
