@@ -1,22 +1,32 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const ItemAdd = ({list_id}) => {
+const ItemAdd = ({list_id, gen_list}) => {
     const [item, setItem] = useState("");
     const [quantity, setQuantity] = useState("");
-    const trip_id = useParams();
+
+    const user_id = useParams().user_id;
+    const trip_id = useParams().trip_id;
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const body = { item, quantity, list_id };
+            let checked_off = false;
+            const body = { item, quantity, list_id, checked_off };
             console.log(body);
             const response = await fetch("http://localhost:8000/allitems", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            window.location = `/list/${trip_id.trip_id}`;
+
+            console.log(response)
+            
+            if (!gen_list) {
+                window.location = `/list/user=${user_id}&trip=${trip_id}`;
+            } else {
+                window.location = `/gen-list/user=${user_id}`;
+            }
 
             // console.log(response);
             // const data = await response.json();

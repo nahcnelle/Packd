@@ -8,14 +8,16 @@ import "../css-files/ItemUpdate.css";
 const ItemEditInput = ({ items, list_id }) => {
     const [item, setItem] = useState(items.item);
     const quantity = items.quantity;
+    const checked_off = items.checked_off;
 
-    const trip_id = useParams();
+    const user_id = useParams().user_id;
+    const trip_id = useParams().trip_id;
     
     const updateItem = async (e, item_id, item) => {
         e.preventDefault();
         try {
             // console.log(item_id);
-            const body = { item, quantity, list_id, item_id};
+            const body = { item, quantity, list_id, checked_off };
             // console.log(body);
             const response = await fetch(`http://localhost:8000/allitems/${item_id}`, {
                 method: "PUT",
@@ -23,12 +25,8 @@ const ItemEditInput = ({ items, list_id }) => {
                 params: item_id,
                 body: JSON.stringify(body)
             });
-            window.location = `/list/${trip_id.trip_id}`;
 
-            // console.log(response);
-            // const data = await response.text();
-            // console.log(data);
-
+            
         } catch (err) {
             console.error(err.message);
         }
