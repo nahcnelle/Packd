@@ -3,10 +3,15 @@ import React from "react";
 const ListRemove = ({ list, lists, setLists }) => {
   
   const deleteList = async (list_id) => {
+    console.log("click")
     try {
-      await fetch(`http://localhost:8000/alllists/${list_id}`, {
-        method: "DELETE"
-      });
+        console.log(list_id)
+        
+        let response = await fetch(`http://localhost:8000/alllists/list/${list_id}`, {
+            method: "DELETE"
+        });
+
+        console.log(response)
 
         setLists(lists.filter(list => list.list_id !== list_id));
       } catch (err) {

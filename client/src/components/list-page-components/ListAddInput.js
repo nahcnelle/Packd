@@ -3,28 +3,32 @@ import { useParams } from "react-router-dom";
 
 import "../css-files/ListAddInput.css";
 
-const ListAddInput = () => {
-    const [description, setDescription] = useState();
+const ListAddInput = ( {gen_list} ) => {
 
-    let trip_id = useParams();
-    trip_id = trip_id.trip_id;
+    const [description, setDescription] = useState("");
+
+    const user_id = useParams().user_id;
+    const trip_id = useParams().trip_id;
     // console.log(trip_id.trip_id, "trip_id in ListAddInput");
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const body = { description, trip_id };
+            const body = { description, trip_id, user_id, gen_list };
             // console.log(body, "body");
             const response = await fetch("http://localhost:8000/alllists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            window.location = `/list/${trip_id.trip_id}`;
 
-            // console.log(response);
-            // const data = await response.json();
-            // console.log(data);
+            if (!gen_list) {
+                window.location = `/list/user=${user_id}&trip=${trip_id}`;
+            } else {
+                window.location = `/gen-list/user=${user_id}`;
+            }
+            
+
         } catch (err) {
             console.error(err.message);
         }
