@@ -12,33 +12,56 @@ const ListRemove = ({ list, lists, setLists, gen_list }) => {
             console.log("trip:", trip_id==null)
 
             if (gen_list && trip_id == null) {
+                // general list and not in a trip
+                // remove from packing_lists
                 response = await fetch(`http://localhost:8000/alllists/list/${list_id}`, {
                     method: "DELETE"
                 });
+                console.log("done packinglist:")
 
+                // remove from items
                 response = await fetch(`http://localhost:8000/allitems/list/${list_id}`, {
                     method: "DELETE"
                 });
+                console.log("done items:")
 
-            } else {
-                response = await fetch(`http://localhost:8000/genlists/list/${list_id}/trip/${trip_id}`, {
+                // remove from trip_gen_lists
+                response = await fetch(`http://localhost:8000/genlists/alllist/${list_id}`, {
                     method: "DELETE"
                 });
+                console.log("done trip gen lists:")
 
-                if (!gen_list) {
+                window.location = `/gen-list/user=${user_id}`;
+
+            } else {
+                // in a trip
+                console.log("remove list")
+                // general list
+                if (gen_list) {
+                    response = await fetch(`http://localhost:8000/genlists/list/${list_id}/trip/${trip_id}`, {
+                        method: "DELETE"
+                    });
+                } else {
+                    // normal list in a trip
+                    response = await fetch(`http://localhost:8000/alllists/list/${list_id}`, {
+                        method: "DELETE"
+                    });
+
                     response = await fetch(`http://localhost:8000/allitems/list/${list_id}`, {
                         method: "DELETE"
                     });
                 }
 
+                window.location = `/list/user=${user_id}&trip=${trip_id}`;
+
             }
 
             
-            if (gen_list && trip_id == null) {
-                window.location = `/gen-list/user=${user_id}`;
-            } else {
-                window.location = `/list/user=${user_id}&trip=${trip_id}`;
-            }
+            // if (gen_list && trip_id == null) {
+            //     window.location = `/gen-list/user=${user_id}`;
+            // } else {
+            //     window.location = `/list/user=${user_id}&trip=${trip_id}`;
+            // }
 
                 // setLists(lists.filter(list => list.list_id !== list_id));
         } catch (err) {
