@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import HomeNavbar from "./HomeNavbar";
+
 import "./css-files/SignupPage.css"
 
 const SignupPage = () => {
@@ -34,7 +36,7 @@ const SignupPage = () => {
                     body: JSON.stringify(body)
                 });
 
-                window.location = `/trips/${body.username}`;
+                window.location = `/user-login`;
             }
 
         } catch (err) {
@@ -47,17 +49,20 @@ const SignupPage = () => {
     }
 
     return (
-        <div className="signup-page text-center">
-            <h1 className="text-center mt-5">Packd</h1>
-            <h3 className="signup-header">Signup</h3>
-            <div className="signup-messsage d-flex">
-                <p className="enter-username-text">Enter a username.</p>
-                <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>Username taken! Please enter another username. 🥸</p>
+        <div>
+            <HomeNavbar />
+            <div className="signup-page text-center">
+                <h1 className="text-center mt-5">Packd</h1>
+                <h3 className="signup-header">Signup</h3>
+                <div className="signup-messsage d-flex">
+                    <p className="enter-username-text">Enter a username.</p>
+                    <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>Username taken! Please enter another username. 🥸</p>
+                </div>
+                <form className="username-form d-flex mx-5" onSubmit={onSubmitForm}>
+                    <input type="text" className="form-input form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+                    <button className="form-btn btn btn-primary">Signup</button>
+                </form>
             </div>
-            <form className="username-form d-flex mx-5" onSubmit={onSubmitForm}>
-                <input type="text" className="form-input form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
-                <button className="form-btn btn btn-primary">Signup</button>
-            </form>
         </div>
     );
 };

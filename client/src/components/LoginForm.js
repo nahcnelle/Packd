@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import HomeNavbar from "./HomeNavbar";
+
 import "./css-files/LoginForm.css"
 
 const LoginForm = () => {
@@ -22,8 +24,9 @@ const LoginForm = () => {
                 changeVisibility(false);
 
                 console.log("user_id", user_id)
+                console.log(typeof(user_id))
 
-                window.location = `/trips/${body.username}`;
+                window.location = `/trips/${user_id.user_id}`;
             } catch (err) {
                 console.log("invalid username");
                 console.log(body);
@@ -47,16 +50,19 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="login-form text-center">
-            <h3 className="login-header">Login</h3>
-            <div className="login-messsage d-flex">
-                <p className="enter-username-text">Enter a username.</p>
-                <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>User does not exist 😳</p>
+        <div>
+            <HomeNavbar />
+            <div className="login-form">
+                <h3 className="text-center login-header">Login</h3>
+                <div className="login-messsage d-flex">
+                    <p className="enter-username-text">Enter a username.</p>
+                    <p className="user-taken-message" style={{ visibility: isVisible ? "visible" : "hidden" }}>User does not exist 😳</p>
+                </div>
+                <form className="username-form  d-flex mx-5" onSubmit={onSubmitForm}>
+                    <input type="text" className="form-input form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+                    <button className="form-btn btn btn-primary">Login</button>
+                </form>
             </div>
-            <form className="username-form text-center" onSubmit={onSubmitForm}>
-                <input type="text" className="form-input form-control" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
-                <button className="form-btn btn btn-primary">Login</button>
-            </form>
         </div>
     );
 };

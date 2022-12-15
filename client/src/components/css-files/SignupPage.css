@@ -4,6 +4,7 @@
 }
 
 .signup-header {
+    justify-content: center;
     margin-top: 2rem;
 }
 
@@ -29,8 +30,8 @@
     
 }
 
-.form-input {
-    max-width: 50%;
+.form-input.form-control {
+    max-width: 100%;
 }
 
 .form-btn {
