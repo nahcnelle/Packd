@@ -4,7 +4,7 @@ import express from "express";
 const tripRoutes = express.Router();
 
 // add a trip
-tripRoutes.post("/alltrips", async(req,res) => {
+tripRoutes.post("/alltrips/trip", async(req,res) => {
     try {
         const { destination, user_id } = req.body;
         const newTrip = await pool.query("INSERT INTO trips (destination, user_id) VALUES($1, $2)", [destination, user_id]);
@@ -16,7 +16,7 @@ tripRoutes.post("/alltrips", async(req,res) => {
 });
 
 // delete a trip
-tripRoutes.delete("/alltrips/:trip_id", async (req, res) => {
+tripRoutes.delete("/alltrips/trip/:trip_id", async (req, res) => {
     try {
         const { trip_id } = req.params;
         const deleteTrip = await pool.query("DELETE FROM trips WHERE trip_id = $1", [trip_id]);
@@ -28,7 +28,7 @@ tripRoutes.delete("/alltrips/:trip_id", async (req, res) => {
 });
 
 // update a trip
-tripRoutes.put("/alltrips/:trip_id", async (req, res) => {
+tripRoutes.put("/alltrips/trip/:trip_id", async (req, res) => {
     try {
         const { trip_id } = req.params;
         const { destination } = req.body;
@@ -41,7 +41,7 @@ tripRoutes.put("/alltrips/:trip_id", async (req, res) => {
 });
 
 // get a trip
-tripRoutes.get("/alltrips/:trip_id", async (req, res) => {
+tripRoutes.get("/alltrips/trip/:trip_id", async (req, res) => {
     try {
         const { trip_id } = req.params;
         const getTrip = await pool.query("SELECT * FROM trips WHERE trip_id = $1", [trip_id]);
@@ -53,7 +53,7 @@ tripRoutes.get("/alltrips/:trip_id", async (req, res) => {
 });
 
 // get user's trips
-tripRoutes.get("/alltrips/:user_id", async (req, res) => {
+tripRoutes.get("/alltrips/user_id/:user_id", async (req, res) => {
     try {
         const { user_id } = req.params;
         const userTrips = await pool.query("SELECT * FROM trips where user_id = $1", [user_id]);

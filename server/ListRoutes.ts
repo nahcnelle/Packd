@@ -6,10 +6,10 @@ const listRoutes = express.Router();
 // add a list
 listRoutes.post("/alllists", async(req,res) => {
     try {
-        const { description, trip_id } = req.body;
+        const { description, trip_id, user_id, gen_list } = req.body;
         console.log(description);
         // const newItem = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES('sanfrancisco', 33)");
-        const newList = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES($1, $2)", [description, trip_id]);
+        const newList = await pool.query("INSERT INTO packing_lists (description, trip_id, user_id, gen_list) VALUES($1, $2, $3, $4)", [description, trip_id, user_id, gen_list]);
     
         console.log(res.json(newList.rows[0]));
       } catch (err : any) {
@@ -18,7 +18,7 @@ listRoutes.post("/alllists", async(req,res) => {
 });
 
 // delete a list
-listRoutes.delete("/alllists/:list_id", async (req, res) => {
+listRoutes.delete("/alllists/list/:list_id", async (req, res) => {
     try {
         const { list_id } = req.params;
         const deleteList = await pool.query("DELETE FROM packing_lists WHERE list_id = $1", [list_id]);
@@ -30,7 +30,7 @@ listRoutes.delete("/alllists/:list_id", async (req, res) => {
 });
 
 // update a list
-listRoutes.put("/alllists/:list_id", async (req, res) => {
+listRoutes.put("/alllists/list/:list_id", async (req, res) => {
     try {
         const { list_id } = req.params;
         const { description } = req.body;
@@ -43,7 +43,7 @@ listRoutes.put("/alllists/:list_id", async (req, res) => {
 });
 
 // get a list
-listRoutes.get("/alllists/:list_id", async (req, res) => {
+listRoutes.get("/alllists/list/:list_id", async (req, res) => {
     try {
         const { list_id } = req.params;
         const getList = await pool.query("SELECT * FROM packing_lists WHERE list_id = $1", [list_id]);
@@ -60,6 +60,43 @@ listRoutes.get("/alllists", async (req, res) => {
         const allLists = await pool.query("SELECT * FROM packing_lists");
 
         console.log(res.json(allLists.rows));
+    } catch (err : any) {
+        console.error(err.message);
+    }
+});
+
+// get all general lists for a user
+listRoutes.get("/genlists/user/:user_id", async (req, res) => {
+    try {
+        const { user_id } = req.params;
+        const genLists = await pool.query("SELECT * FROM packing_lists WHERE user_id = $1 AND gen_list = true", [user_id]);
+
+        console.log(res.json(genLists.rows));
+    } catch (err : any) {
+        console.error(err.message);
+    }
+});
+
+// add general list to a trip
+listRoutes.post("/tripgenlist", async(req,res) => {
+    try {
+        const { list_id, trip_id} = req.body;
+        // const newItem = await pool.query("INSERT INTO packing_lists (description, trip_id) VALUES('sanfrancisco', 33)");
+        const genList = await pool.query("INSERT INTO trip_gen_lists (list_id, trip_id) VALUES($1, $2)", [list_id, trip_id]);
+    
+        console.log(res.json(genList.rows[0]));
+      } catch (err : any) {
+        console.error(err.message);
+      }
+});
+
+// get all general lists for a trip
+listRoutes.get("/genlists/trip/:trip_id", async (req, res) => {
+    try {
+        const { trip_id } = req.params;
+        const genLists = await pool.query("SELECT * FROM packing_lists INNER JOIN trip_gen_lists ON packing_lists.list_id = trip_gen_lists.list_id WHERE trip_gen_lists.trip_id = $1 AND packing_lists.gen_list = true", [trip_id]);
+
+        console.log(res.json(genLists.rows));
     } catch (err : any) {
         console.error(err.message);
     }
