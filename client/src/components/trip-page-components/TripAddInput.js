@@ -1,21 +1,26 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import "../css-files/TripAddInput.css"
 
 const TripAddInput = () => {
     const [destination, setDestination] = useState("");
 
+    const user_id = useParams().user_id;
+
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const body = { destination };
+            const body = { destination, user_id };
             console.log(body);
-            const response = await fetch("http://localhost:8000/alltrips", {
+            const response = await fetch("http://localhost:8000/alltrips/trip", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            window.location = "/trips";
+
+            
+            window.location = `/trips/${user_id}`;
 
             // console.log(response);
             // const data = await response.json();

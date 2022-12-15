@@ -1,13 +1,20 @@
 .page {
     margin: 10rem;
+
+}
+
+.trips {
+    margin-right: 5rem;
+    margin-left: 5rem;
 }
 
 .table {
     margin: 1rem;
+    background-color: aliceblue;
 }
 
+
 .row {
-    margin: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

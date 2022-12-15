@@ -10,7 +10,7 @@ const TripEdit = ({ trip }) => {
             // console.log(item_id);
             const body = { destination };
             // console.log(body);
-            const response = await fetch(`http://localhost:8000/alltrips/${trip_id}`, {
+            const response = await fetch(`http://localhost:8000/alltrips/trip/${trip_id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 params: trip_id,
