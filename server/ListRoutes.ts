@@ -102,4 +102,16 @@ listRoutes.get("/genlists/trip/:trip_id", async (req, res) => {
     }
 });
 
+// delete a general list from a trip
+listRoutes.delete("/genlists/list/:list_id/trip/:trip_id", async (req, res) => {
+    try {
+        const { list_id, trip_id } = req.params;
+        const deleteList = await pool.query("DELETE FROM trip_gen_lists WHERE list_id = $1 AND trip_id = $2", [list_id, trip_id]);
+        
+        console.log(res.json(deleteList));
+    } catch (err : any) {
+        console.log(err.message);
+    }
+});
+
 export default listRoutes;

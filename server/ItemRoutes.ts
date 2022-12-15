@@ -27,6 +27,18 @@ itemRoutes.delete("/allitems/:item_id", async (req, res) => {
     }
 });
 
+// delete all items from a list
+itemRoutes.delete("/allitems/list/:list_id", async (req, res) => {
+    try {
+        const { list_id } = req.params;
+        const deleteList = await pool.query("DELETE FROM items WHERE list_id = $1", [list_id]);
+        
+        console.log(res.json(deleteList));
+    } catch (err : any) {
+        console.log(err.message);
+    }
+});
+
 // update an item
 itemRoutes.put("/allitems/:item_id", async (req, res) => {
     try {
