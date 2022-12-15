@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// react router used throughout the project to route to different pages
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import './App.css';

@@ -1,4 +1,6 @@
+// express used to write handlers for queries to the database
 import express from "express";
+// cors enables access of database from remote hosts
 import cors from "cors";
 import pool from "./database";
 import tripRoutes from "./TripRoutes";
