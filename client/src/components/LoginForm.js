@@ -26,7 +26,7 @@ const LoginForm = () => {
                 console.log("user_id", user_id)
                 console.log(typeof(user_id))
 
-                window.location = `/trips/${user_id.user_id}`;
+                window.location = `/trips/user=${user_id.user_id}`;
             } catch (err) {
                 console.log("invalid username");
                 console.log(body);
