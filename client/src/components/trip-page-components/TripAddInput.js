@@ -20,7 +20,7 @@ const TripAddInput = () => {
             });
 
             
-            window.location = `/trips/${user_id}`;
+            window.location = `/trips/user=${user_id}`;
 
             // console.log(response);
             // const data = await response.json();
